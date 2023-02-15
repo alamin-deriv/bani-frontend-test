@@ -37,3 +37,18 @@ export const AmountContainer = styled.div`
     color: black;
   }
 `;
+
+export const AmountInput = styled.input`
+  border: 0.5px solid #e1e1e1;
+  height: 44px;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 8px;
+  font-size: 16px;
+  width: ${({ width }) => width};
+
+  ::placeholder {
+    color: #c1c1c1;
+  }
+`;

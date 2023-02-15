@@ -210,13 +210,25 @@ export const PaymentCard = ({ handleSubmit, amount }: PaymentCardProps) => {
   );
 };
 
-export const PaymentCard2 = () => {
+type PaymentCard2Props = {
+  handleSubmit: (amount: string | number, count?: number) => void;
+  amount: string | number;
+};
+
+export const PaymentCard2 = ({ handleSubmit, amount }: PaymentCard2Props) => {
+  const [inputAmount, setInputAmount] = useState(0);
+  amount = Number(amount);
+
   return (
     <Container height="274px" padding="24px 16px">
       <h2>Payment for product</h2>
       <Subheader>Amount</Subheader>
-      <TotalAmountComponent />
-      <PayButton />
+      <TotalAmountComponent amount={amount} setInputAmount={setInputAmount} />
+      <PayButton
+        inputAmount={inputAmount}
+        handleSubmit={() => handleSubmit(inputAmount, 1)}
+        amount={amount}
+      />
     </Container>
   );
 };
