@@ -1,15 +1,21 @@
+import { DetailedHTMLProps, SelectHTMLAttributes } from "react";
 import styled from "styled-components";
+
+ interface STyledTypes {
+  padding?: string;
+  height?: string
+}
 
 export const CardRow = styled.div`
   display: flex;
   /* background: red; */
 `;
-export const Icon = styled.div`
+export const Icon = styled.div<STyledTypes>`
   background: #f4f3ff;
   min-width: 37.5px;
   height: 37.5px;
   /* border */
-  padding: ${({ padding }) => padding};
+  padding: ${({ padding}) => padding};
   margin-top: 10px;
   border-radius: 50px;
   display: flex;
@@ -20,9 +26,9 @@ export const Icon = styled.div`
 export const DescriptionContainer = styled.div`
   margin-left: 10px;
 `;
-export const Container = styled.div`
+export const Container = styled.div<STyledTypes>`
   max-width: 480px;
-  height: ${({ height }) => height};
+  height: ${({ height }) => height ? height : "fit-content"};
   padding: ${({ padding }) => padding};
   background: #fff;
   margin-bottom: 20px;
@@ -76,9 +82,15 @@ export const Input = styled.input`
   }
 `;
 
+interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>    {
+  width?: string;
+  placeholder?: string;
+}
+
 export const Select = styled.select.attrs((props) => ({
+  // @ts-ignore
   width: props.width,
-}))`
+}))<SelectProps>`
   border: 0.5px solid #e1e1e1;
   height: 44px;
   border-radius: 8px;
@@ -126,4 +138,12 @@ export const QuantityRow = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 146px;
+`;
+
+
+export const Error = styled.em`
+  color: #f3564d;
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
 `;
