@@ -9,7 +9,7 @@
 
 ## Running the application on dev
 
-- Go into the project directory using `cd mytheresa-task`.
+- Go into the project directory using `cd bani-frontend-test`.
 - Install all dependencies using `yarn`.
 - Run the application locally using `yarn start`.
 - Access the application on [https://localhost:3000](https://localhost:3000)
