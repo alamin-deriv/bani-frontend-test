@@ -1,31 +1,14 @@
+import React from 'react';
 import "./App.css";
-import DescriptionCard, {
-  CustomerDetailsCard,
-  PaymentCard,
-  PaymentCard2,
-} from "./components/DescriptionCard/DescriptionCard";
-import { SecurityImgContainer, Container } from "./App.styled";
-import Security from "./assets/security.png";
+import { Routes, Route } from "react-router-dom";
+import DirectPaymentDetails from "./pages/direct_payment_details";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <>
-      <Container className="App">
-        <div>
-          <DescriptionCard />
-          <CustomerDetailsCard />
-        </div>
-        <PaymentCard />
-        {/* <PaymentCard2 /> */}
-      </Container>
-      <SecurityImgContainer>
-        <img src={Security} />
-        <p>
-          Do you have any questions, visit our website <a href="#">bani.africa</a>
-        </p>
-      </SecurityImgContainer>
-    </>
+    <Routes>
+       <Route path="/comhub/direct_payment_page_details/:page_ref" element={<DirectPaymentDetails />} />
+    </Routes>
   );
-}
+};
 
 export default App;
