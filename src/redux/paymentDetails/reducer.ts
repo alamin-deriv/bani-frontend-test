@@ -4,7 +4,8 @@ import paymentDetailsActionTypes from "./types";
 
 const INITIAL_STATE = {
   isLoading: false,
-  paymentDetails: {}
+  error: false,
+  paymentDetails: {},
 };
 
 function paymentDetailsReducer(state = INITIAL_STATE, { type, payload }:{type: string, payload: any }) {
@@ -20,6 +21,7 @@ function paymentDetailsReducer(state = INITIAL_STATE, { type, payload }:{type: s
         ...state,
         isLoading: false,
         paymentDetails: payload,
+        error: false,
       };
     case paymentDetailsActionTypes.FETCH_PAYMENT_DETAILS_FAIL:
       return {

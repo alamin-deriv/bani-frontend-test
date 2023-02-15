@@ -5,12 +5,17 @@ const selectPaymentDetails = (state: { paymentDetails: any; }) => state.paymentD
 
 export const selectIsLoading = createSelector(
   [selectPaymentDetails],
-  (movies) => movies.isLoading
+  (paymentDetails) => paymentDetails.isLoading
 );
 
 export const PaymentDetailsSelect = createSelector(
   [selectPaymentDetails],
-  (movies) => movies.paymentDetails
+  (paymentDetails) => paymentDetails.paymentDetails
+);
+
+export const SelectError = createSelector(
+  [selectPaymentDetails],
+  (paymentDetails) => paymentDetails.error,
 );
 
 

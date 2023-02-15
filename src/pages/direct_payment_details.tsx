@@ -7,9 +7,14 @@ import DescriptionCard, {
 } from "./../components/DescriptionCard"
 import {Loader} from "./../components/Loader"
 import { SecurityImgContainer, Container } from "./direct_payment.styled";
+import { EmptyState } from "./../components/EmptyState";
 import Security from "../assets/security.png";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading, PaymentDetailsSelect } from '../redux/paymentDetails/selectors';
+import {
+  selectIsLoading,
+  PaymentDetailsSelect,
+  SelectError,
+} from "../redux/paymentDetails/selectors";
 import { fetchPaymentDetailsStart } from '../redux/paymentDetails/actions';
 // @ts-ignore
 import { createForm } from 'rc-form';
@@ -31,6 +36,7 @@ const DirectPaymentDetails = ({form}:DirectPaymentDetailsProps) => {
 
   const PaymentDetails = useSelector(PaymentDetailsSelect);
   const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(SelectError);
   
 
   useEffect(() => {
@@ -57,14 +63,18 @@ const DirectPaymentDetails = ({form}:DirectPaymentDetailsProps) => {
       }
     });
   };
+
+    if (isLoading)
+    return <Loader />;
+
+     if (error)
+       return (
+         <EmptyState header="Error Acquired" message="Please try again later" />
+       );
   
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
           <Container className="App">
             <div>
               <DescriptionCard />
@@ -90,8 +100,6 @@ const DirectPaymentDetails = ({form}:DirectPaymentDetailsProps) => {
             </p>
           </SecurityImgContainer>
         </>
-      )}
-    </>
   );
 };
 export default createForm()(DirectPaymentDetails);

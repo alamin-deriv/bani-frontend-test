@@ -142,8 +142,8 @@ export const QuantityRow = styled.div`
 
 
 export const Error = styled.em`
-  color: #f3564d;
+  color: #ea2a8a;
   display: block;
   margin-top: 4px;
-  font-size: 10px;
+  font-size: 11px;
 `;
