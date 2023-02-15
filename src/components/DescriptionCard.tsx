@@ -171,24 +171,45 @@ export const CustomerDetailsCard = ({ form }: CustomerDetailsCardProps) => {
   );
 };
 
-export const PaymentCard = () => {
+type PaymentCardProps = {
+  handleSubmit: (amount: string | number, count?: number) => void;
+  amount: string | number;
+};
+
+export const PaymentCard = ({ handleSubmit, amount }: PaymentCardProps) => {
+  const [count, setCount] = useState(1);
+
+  amount = count * Number(amount);
+
   return (
     <Container height="338px" padding="24px 16px">
       <h2>Payment for product</h2>
       <Row>
         <Subheader>Quantity</Subheader>
         <QuantityRow>
-          <QuantityButton icon={Minus} />
-          <QuantityInput placeholder="1" width="50px" />
-          <QuantityButton icon={Add} />
+          <QuantityButton
+            disabled={count === 1 ? true : false}
+            handleCount={() => setCount(count - 1)}
+            icon={Minus}
+          />
+          <QuantityInput placeholder={`${count}`} width="50px" />
+          <QuantityButton
+            disabled={false}
+            handleCount={() => setCount(count + 1)}
+            icon={Add}
+          />
         </QuantityRow>
       </Row>
       <Subheader>Total</Subheader>
-      <TotalAmountComponent />
-      <PayButton />
+      <TotalAmountComponent setInputAmount={() => {}} amount={amount} />
+      <PayButton
+        amount={amount}
+        handleSubmit={() => handleSubmit(amount, count)}
+      />
     </Container>
   );
 };
+
 export const PaymentCard2 = () => {
   return (
     <Container height="274px" padding="24px 16px">
