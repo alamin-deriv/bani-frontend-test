@@ -43,7 +43,17 @@ const DirectPaymentDetails = ({form}:DirectPaymentDetailsProps) => {
   const handleSubmit = (amount: number | string, count?: number) => {
     validateFields((err: any, values: any) => {
       if (!err) {
-
+        // @ts-ignore
+        window.BaniPopUp({
+          amount,
+          phoneNumber: values.number,
+          email: values.email,
+          firstName: values.firstname,
+          lastName: values.lastname,
+          merchantKey: PaymentDetails?.page_creator_details?.account_pub_key,
+          paymentPageRef: page_ref,
+          pageItemQty: count,
+        });
       }
     });
   };
